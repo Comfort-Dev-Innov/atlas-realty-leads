@@ -1,5 +1,12 @@
-import { NextResponse } from 'next/server';
+import { ApiResponse } from '@/utils/ApiResponse';
 
 export async function GET() {
-  return NextResponse.json({ message: 'Atlas Realty Leads, Site Active!' });
+  return ApiResponse({
+    message: 'Atlas Realty Leads, Site Active!',
+    success: true,
+    status: 200,
+    data: {
+      message: 'Atlas Realty Leads, Site Active!',
+    },
+  });
 }
