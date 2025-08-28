@@ -1,11 +1,13 @@
 import HeroSection from '@/components/sections/HeroSection';
 import SimplePricing from '@/components/sections/SimplePricing';
+import TimelineSection from '@/components/sections/TimelineSection';
 
 export default function Home() {
   return (
-    <div className="bg-[#fdfdfd] flex flex-col items-center justify-center min-h-screen">
+    <div className="bg-[#fdfdfd] overflow-x-hidden flex flex-col items-center justify-center min-h-screen">
       <HeroSection />
       <SimplePricing />
+      <TimelineSection />
     </div>
   );
 }
