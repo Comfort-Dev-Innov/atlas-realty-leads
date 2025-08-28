@@ -229,7 +229,7 @@ const TimelineSection = () => {
             ))}
           </div>
           {steps.map((step, index) => {
-            const Icon = step.icon;
+            // const Icon = step.icon;
             const isLast = index === steps.length - 1;
             const delay = index * 0.3; // Stagger delay between steps
             const isReverse = step.reverse;
