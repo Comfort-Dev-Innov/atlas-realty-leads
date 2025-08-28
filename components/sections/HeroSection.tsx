@@ -5,6 +5,7 @@ import { motion, MotionConfig } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { CustomerFormDialog } from '../ui/forms/CustomFormDialog';
 import { useFormDialogStore } from '@/stores/formDialogStore';
+import Image from 'next/image';
 
 const HeroSection = () => {
   // Set to true to disable all animations for testing only
@@ -13,8 +14,8 @@ const HeroSection = () => {
 
   return (
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-      <section className="p-8 sm:px-20 xl:px-40 sm:flex-1 w-full flex flex-col-reverse lg:flex-row gap-6 justify-between items-center">
-        <div className="w-full lg:w-1/2">
+      <section className="p-8 sm:px-20 xl:px-40 sm:flex-1 w-full flex flex-col-reverse lg:flex-row gap-6 justify-between items-center mt-8 min-h-screen">
+        <div className="w-full lg:w-1/2 h-[30rem] sm:mt-[10rem]">
           <h1 className="text-center lg:text-left text-[25px] min-[400px]:text-[35px] sm:text-[45px] md:text-[50px] xl:text-[45px] font-bold mb-6 leading-tight">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -135,7 +136,7 @@ const HeroSection = () => {
             </Button>
           </motion.div>
         </div>
-        <div className="w-full lg:w-1/2 flex justify-center items-center relative h-120 sm:h-96">
+        <div className="w-full lg:w-1/2 flex justify-center items-center relative h-120 sm:h-[30rem]">
           {/* Big center circle */}
           <motion.div
             className="absolute w-[200px] h-[200px] min-[400px]:w-[250px] min-[400px]:h-[250px] sm:w-[350px] sm:h-[350px] xl:w-[500px] xl:h-[500px] rounded-full overflow-hidden left-[30px] min-[400px]:left-[100px] min-[500px]:left-[200px] sm:left-[150px] md:left-[280px] lg:left-[100px] 2xl:left-[200px] shadow-2xl border-4 border-white z-10"
@@ -153,7 +154,9 @@ const HeroSection = () => {
               rotate: { duration: 6, repeat: Infinity, ease: 'easeInOut' },
             }}
           >
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src="/assets/images/real-estate-3.jpg"
               alt="Real Estate Property"
               className="w-full h-full object-cover"
@@ -179,8 +182,10 @@ const HeroSection = () => {
               rotate: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
             }}
           >
-            <img
+            <Image
               src="/assets/images/real-estate-2.jpg"
+              width={1000}
+              height={1000}
               alt="Real Estate Property"
               className="w-full h-full object-cover"
             />
@@ -205,7 +210,9 @@ const HeroSection = () => {
               rotate: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
             }}
           >
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src="/assets/images/real-estate-1.jpg"
               alt="Real Estate Property"
               className="w-full h-full object-cover"
@@ -231,7 +238,9 @@ const HeroSection = () => {
               rotate: { duration: 5, repeat: Infinity, ease: 'easeInOut' },
             }}
           >
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src="/assets/images/family-home-tour.jpg"
               alt="Real Estate Property"
               className="w-full h-full object-cover"
@@ -255,7 +264,9 @@ const HeroSection = () => {
               rotate: { duration: 7, repeat: Infinity, ease: 'easeInOut' },
             }}
           >
-            <img
+            <Image
+              width={1000}
+              height={1000}
               src="/assets/images/talk-business.jpg"
               alt="Real Estate Property"
               className="w-full h-full object-cover"
