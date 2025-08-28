@@ -1,12 +1,15 @@
 'use client'
 import React from 'react'
-import { Button } from '../ui/Button'
+import { Button } from '../ui/base/Button'
 import { motion, MotionConfig } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import { CustomerFormDialog } from '../ui/forms/CustomFormDialog'
+import { useFormDialogStore } from '@/stores/formDialogStore'
 
 const HeroSection = () => {
   // Set to true to disable all animations for testing only
   const disableAnimations = false;
+  const { setOpen } = useFormDialogStore();
 
   return (
     <MotionConfig reducedMotion={disableAnimations ? "always" : "never"}>
@@ -112,7 +115,10 @@ const HeroSection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                <Button className="p-6 group relative overflow-hidden">
+                <Button 
+                    className="p-6 group relative overflow-hidden"
+                    onClick={() => setOpen(true)}
+                >
                     <span className="relative z-10">See How It Works</span>
                     <motion.div
                         className="inline-flex items-center"
@@ -254,6 +260,7 @@ const HeroSection = () => {
             </motion.div>
         </div>
       </section>
+      <CustomerFormDialog />
     </MotionConfig>
   )
 }
