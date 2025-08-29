@@ -16,7 +16,7 @@ const HeroSection = () => {
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
       <section className="p-8 sm:px-20 xl:px-40 sm:flex-1 w-full flex flex-col-reverse lg:flex-row gap-6 justify-between items-center mt-8 min-h-screen">
         <div className="w-full lg:w-1/2 h-[30rem] sm:mt-[10rem]">
-          <h1 className="text-center lg:text-left text-[25px] min-[400px]:text-[35px] sm:text-[45px] md:text-[50px] xl:text-[45px] font-bold mb-6 leading-tight">
+          <h1 className="text-center lg:text-left text-[25px] min-[400px]:text-[35px] sm:text-[45px] md:text-[50px] font-bold mb-6 leading-tight">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

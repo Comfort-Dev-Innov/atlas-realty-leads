@@ -17,7 +17,7 @@ export default function SimplePricing() {
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
       <div className="w-full flex flex-col items-center justify-center mt-4 md:mt-4 my-8">
         <div className="border-t w-[80%] border-black/80 mt-8 mb-8" />
-        <h2 className="text-4xl sm:text-[45px] md:text-[50px] xl:text-[45px] font-bold my-4 text-center">
+        <h2 className="text-4xl sm:text-[45px] md:text-[50px] font-bold my-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -88,7 +88,7 @@ const TimelineSection = () => {
         {/* Header Section */}
         <div className="">
           <div className=" container flex flex-col gap-6 py-4 lg:py-8">
-            <h2 className="text-4xl sm:text-[45px] md:text-[50px] xl:text-[45px] font-bold my-4 text-center">
+            <h2 className="text-4xl sm:text-[45px] md:text-[50px] font-bold my-4 text-center">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
