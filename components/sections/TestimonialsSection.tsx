@@ -41,14 +41,14 @@ const TestimonialsSection = () => {
         },
     ];
 
-    // Convert testimonials to carousel items
     const carouselItems: CarouselItem[] = testimonials.map(testimonial => ({
         id: testimonial.id,
         content: <TestimonialCard testimonial={testimonial} />
     }));
+    
     return (
         <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-            <section className="w-full flex flex-col items-center justify-center px-8 sm:px-20 xl:px-40 py-50">
+            <section id="testimonials" className="w-full flex flex-col items-center justify-center px-8 sm:px-20 xl:px-40 py-50">
                 <div>
                     <h2 className="text-4xl sm:text-[45px] md:text-[50px] font-bold my-4 text-center">
                         <motion.div
