@@ -85,7 +85,7 @@ const CustomerSection = () => {
                         <Customers key={index} imageUrl={customer.imageUrl} label={customer.label} />
                     ))}
                 </div>
-                <div className="mt-12">
+                <div className="mt-18">
                     <Button
                         className="p-6 group relative overflow-hidden"
                         onClick={() => setOpen(true)}
