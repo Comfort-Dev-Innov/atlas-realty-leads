@@ -7,7 +7,7 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection';
 
 export default function Home() {
   return (
-    <div className="bg-[#fdfdfd] overflow-x-hidden flex flex-col items-center justify-center min-h-screen">
+    <div className="bg-[#fdfdfd] overflow-x-hidden flex flex-col items-center justify-center min-h-screen pt-8">
       <HeroSection />
       <RealtorsSection />
       <TimelineSection />

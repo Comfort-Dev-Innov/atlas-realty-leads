@@ -94,7 +94,7 @@ const RealtorsSection = () => {
 
     return (
         <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-            <section ref={sectionRef} className="relative w-full">
+            <section ref={sectionRef} id="why-choose-us" className="relative w-full">
             <motion.div 
                 className="w-full relative overflow-hidden"
                 initial={{ opacity: 0 }}

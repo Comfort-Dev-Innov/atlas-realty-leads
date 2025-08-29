@@ -84,7 +84,7 @@ const TimelineSection = () => {
 
   return (
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-      <section className=" py-32">
+      <section id="how-it-works"className=" py-32">
         {/* Header Section */}
         <div className="">
           <div className=" container flex flex-col gap-6 py-4 lg:py-8">
