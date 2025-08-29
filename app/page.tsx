@@ -1,3 +1,4 @@
+import CustomerSection from '@/components/sections/CustomerSection';
 import HeroSection from '@/components/sections/HeroSection';
 import RealtorsSection from '@/components/sections/RealtorsSection';
 import SimplePricing from '@/components/sections/SimplePricing';
@@ -10,6 +11,7 @@ export default function Home() {
       <RealtorsSection />
       <TimelineSection />
       <SimplePricing />
+      <CustomerSection />
     </div>
   );
 }
