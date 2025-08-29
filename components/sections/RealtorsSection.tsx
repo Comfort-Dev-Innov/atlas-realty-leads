@@ -3,10 +3,22 @@ import React from 'react'
 import { motion, MotionConfig } from 'framer-motion'
 import { HandCoins, PhoneIncoming, Binary, Contact, ReplaceAll, Receipt } from 'lucide-react'
 import RealtorCard from '../ui/cards/RealtorCard'
+import { useIntersectionObserver, useMultipleIntersectionObserver } from '../../utils/useIntersectionObserver'
 
 const RealtorsSection = () => {
-    // Set to true to disable all animations for testing only
-    const disableAnimations = true;
+    const disableAnimations = false;
+    
+    const { targetRef: sectionRef, isIntersecting: isSectionVisible } = useIntersectionObserver({
+        threshold: 0.1,
+        rootMargin: '-50px',
+        triggerOnce: true
+    })
+    
+    const { setRef: setCardRef, isVisible: isCardVisible } = useMultipleIntersectionObserver(6, {
+        threshold: 0.2,
+        rootMargin: '-20px',
+        triggerOnce: true
+    })
 
     const realtorContent = [
         {
@@ -82,25 +94,24 @@ const RealtorsSection = () => {
 
     return (
         <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-            <section className="relative w-full">
+            <section ref={sectionRef} className="relative w-full">
             <motion.div 
                 className="w-full relative overflow-hidden"
                 initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                animate={{ opacity: isSectionVisible ? 1 : 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
             >
                 <div className="absolute inset-0 bg-primary"></div>
                 <motion.div 
                     className="absolute inset-0"
-                    animate={{ 
+                    animate={isSectionVisible ? { 
                         background: [
                             "linear-gradient(45deg, hsl(var(--primary)) 0%, hsl(var(--primary)/.9) 50%, hsl(var(--primary)/.8) 100%)",
                             "linear-gradient(135deg, hsl(var(--primary)/.8) 0%, hsl(var(--primary)) 30%, hsl(var(--primary)/.9) 100%)",
                             "linear-gradient(225deg, hsl(var(--primary)/.9) 0%, hsl(var(--primary)/.8) 70%, hsl(var(--primary)) 100%)",
                             "linear-gradient(45deg, hsl(var(--primary)) 0%, hsl(var(--primary)/.9) 50%, hsl(var(--primary)/.8) 100%)"
                         ]
-                    }}
+                    } : {}}
                     transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
                 />
 
@@ -126,12 +137,12 @@ const RealtorsSection = () => {
                                 top: `${Math.random() * 100}%`,
                                 left: `${Math.random() * 100}%`,
                             }}
-                            animate={{
+                            animate={isSectionVisible ? {
                                 y: [0, -30 - (Math.random() * 20), 0],
                                 x: [0, Math.random() * movementRange - movementRange/2, 0],
                                 opacity: isLarge ? [0.1, 0.6, 0.1] : [0.2, 0.8, 0.2],
                                 scale: isLarge ? [0.3, 1.2, 0.3] : [0.5, 1, 0.5],
-                            }}
+                            } : {}}
                             transition={{
                                 duration: isLarge ? 6 + Math.random() * 4 : 4 + Math.random() * 4,
                                 repeat: Infinity,
@@ -143,14 +154,14 @@ const RealtorsSection = () => {
                 })}
 
                 <motion.div 
-                    className="absolute inset-0 opacity-30"
-                    animate={{
+                    className="absolute inset-0 opacity-30 hidden md:block"
+                    animate={isSectionVisible ? {
                         background: [
                             "radial-gradient(circle at 20% 20%, white 0%, transparent 50%), radial-gradient(circle at 80% 80%, white 0%, transparent 50%)",
                             "radial-gradient(circle at 80% 20%, white 0%, transparent 50%), radial-gradient(circle at 20% 80%, white 0%, transparent 50%)",
                             "radial-gradient(circle at 20% 20%, white 0%, transparent 50%), radial-gradient(circle at 80% 80%, white 0%, transparent 50%)"
                         ]
-                    }}
+                    } : {}}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <div className="relative z-10 px-8 sm:px-20 xl:px-40 py-50">
@@ -158,8 +169,7 @@ const RealtorsSection = () => {
                         <motion.div 
                             className="text-center space-y-4"
                             initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
+                            animate={isSectionVisible ? "visible" : "hidden"}
                             variants={textVariants}
                         >
                             <motion.h1 
@@ -181,12 +191,12 @@ const RealtorsSection = () => {
                             className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 w-full max-w-7xl'
                             variants={containerVariants}
                             initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, margin: "-100px" }}
+                            animate={isSectionVisible ? "visible" : "hidden"}
                         >
                             {realtorContent.map((item, index) => (
                                 <motion.div 
                                     key={index}
+                                    ref={setCardRef(index)}
                                     variants={cardVariants}
                                     whileHover={{ 
                                         scale: 1.05,
@@ -195,7 +205,8 @@ const RealtorsSection = () => {
                                 >
                                     <RealtorCard 
                                         {...item} 
-                                        animationDelay={index * 3 + Math.random() * 5} 
+                                        animationDelay={index * 3 + Math.random() * 5}
+                                        isVisible={isCardVisible(index)}
                                     />
                                 </motion.div>
                             ))}

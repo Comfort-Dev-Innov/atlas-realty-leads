@@ -7,11 +7,12 @@ interface RealtorCardProps {
   title: string
   description: string
   animationDelay?: number
+  isVisible?: boolean
 }
 
-const RealtorCard: React.FC<RealtorCardProps> = ({ icon: Icon, title, description, animationDelay = 0 }) => {
+const RealtorCard: React.FC<RealtorCardProps> = ({ icon: Icon, title, description, animationDelay = 0, isVisible = true }) => {
   const iconAnimation = {
-    animate: {
+    animate: isVisible ? {
       rotateY: [0, 180, 0],
       transition: {
         duration: 1,
@@ -20,11 +21,11 @@ const RealtorCard: React.FC<RealtorCardProps> = ({ icon: Icon, title, descriptio
         delay: animationDelay,
         repeatDelay: 15 + Math.random() * 10,
       }
-    }
+    } : {}
   }
 
   const containerAnimation = {
-    animate: {
+    animate: isVisible ? {
       boxShadow: [
         "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
         "0 8px 25px -3px rgba(0, 0, 0, 0.1)",
@@ -37,7 +38,7 @@ const RealtorCard: React.FC<RealtorCardProps> = ({ icon: Icon, title, descriptio
         delay: animationDelay + 2,
         repeatDelay: 15 + Math.random() * 10
       }
-    }
+    } : {}
   }
 
   return (
