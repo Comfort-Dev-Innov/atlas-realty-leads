@@ -15,7 +15,10 @@ export default function SimplePricing() {
   ];
   return (
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
-      <div id="pricing" className="w-full flex flex-col items-center justify-center mt-4 md:mt-4 my-8">
+      <div
+        id="pricing"
+        className="w-full flex flex-col items-center justify-center mt-4 md:mt-4 my-8"
+      >
         <div className="border-t w-[80%] border-black/80 mt-8 mb-8" />
         <h2 className="text-4xl sm:text-[45px] md:text-[50px] font-bold my-4 text-center">
           <motion.div
@@ -79,7 +82,7 @@ export default function SimplePricing() {
             <p>Exclusive</p>
           </div> */}
           <p className="text-white text-5xl font-bold self-start mt-4 ml-8">
-            $75
+            $65
           </p>
           <p className="text-white self-start ml-8 pt-4 mb-2 text-md mt-4">
             Per exclusive, pre-screened motivated seller lead.

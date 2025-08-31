@@ -11,8 +11,10 @@ import { useFormDialogStore } from '@/stores/formDialogStore';
 import { ChevronLeft, CheckCircle } from 'lucide-react';
 import { Input } from '@/components/ui/base/Input';
 import { Spinner } from '@/components/ui/base/Spinner';
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 export function CustomerFormDialog() {
+  const { executeRecaptcha } = useGoogleReCaptcha();
   const {
     open,
     setOpen,
@@ -34,6 +36,7 @@ export function CustomerFormDialog() {
     setError(false);
     setSuccess(false);
     setErrorMessage('');
+    setFormData({ ...data, submission_date: new Date().toISOString() });
 
     if (
       !data.first_name ||
@@ -49,7 +52,52 @@ export function CustomerFormDialog() {
       return;
     }
     try {
-        // Insert Logic Here
+      const token = await executeRecaptcha?.('customerForm');
+      console.log('Recaptcha response:', token);
+
+      const captcha_response = await fetch('/api/captcha', {
+        method: 'POST',
+        body: JSON.stringify({
+          token: token,
+        }),
+      });
+
+      const captcha_data = await captcha_response.json();
+
+      if (captcha_data.success) {
+        const email_response = await fetch('/api/email/customer', {
+          method: 'POST',
+          body: JSON.stringify({
+            customer_name: `${data.first_name} ${data.middle_name || ''} ${
+              data.last_name
+            }`,
+            contact_email: data.email,
+            customer_data: JSON.stringify(data),
+          }),
+        });
+
+        if (email_response.ok) {
+          setIsLoading(false);
+          setSuccess(true);
+          setErrorMessage('');
+          setError(false);
+        } else {
+          setIsLoading(false);
+          setError(true);
+          setSuccess(false);
+          setErrorMessage(
+            (await email_response.json()).message ||
+              'Something went wrong. Please try again.'
+          );
+        }
+      } else {
+        setIsLoading(false);
+        setError(true);
+        setSuccess(false);
+        setErrorMessage(
+          errorMessage || 'Captcha verification failed. Please try again.'
+        );
+      }
     } catch (error) {
       console.error(error);
       setErrorMessage('Something went wrong. Please try again.');

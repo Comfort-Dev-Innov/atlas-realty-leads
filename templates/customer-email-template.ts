@@ -1,3 +1,6 @@
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function CustomerEmailTemplate(customer_data: any) {
+  return `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -384,8 +387,9 @@
                       <div class="greeting">
                         Hi
                         <span class="customer-name"
-                          >${ customer_data.first_name } ${
-                          customer_data.middle_name || '' }
+                          >${customer_data.first_name} ${
+    customer_data.middle_name || ''
+  }
                           ${customer_data.last_name}</span
                         >! 👋
                       </div>
@@ -416,37 +420,41 @@
                           <tr>
                             <td class="info-label">First Name:</td>
                             <td class="info-value">
-                              ${ customer_data.first_name }
+                              ${customer_data.first_name}
                             </td>
                           </tr>
-                          ${ customer_data.middle_name ? `
+                          ${
+                            customer_data.middle_name
+                              ? `
                           <tr>
                             <td class="info-label">Middle Name:</td>
                             <td class="info-value">
                               ${customer_data.middle_name}
                             </td>
                           </tr>
-                          ` : '' }
+                          `
+                              : ''
+                          }
                           <tr>
                             <td class="info-label">Last Name:</td>
                             <td class="info-value">
-                              ${ customer_data.last_name }
+                              ${customer_data.last_name}
                             </td>
                           </tr>
                           <tr>
                             <td class="info-label">Email Address:</td>
-                            <td class="info-value">${ customer_data.email }</td>
+                            <td class="info-value">${customer_data.email}</td>
                           </tr>
                           <tr>
                             <td class="info-label">Phone Number:</td>
                             <td class="info-value">
-                              ${ customer_data.phone_number }
+                              ${customer_data.phone_number}
                             </td>
                           </tr>
                           <tr>
                             <td class="info-label">Target Zip Code:</td>
                             <td class="info-value">
-                              ${ customer_data.zip_code }
+                              ${customer_data.zip_code}
                             </td>
                           </tr>
                         </table>
@@ -554,9 +562,7 @@
                         <tr>
                           <td style="text-align: center">
                             <a
-                              href="mailto:${
-                                                      customer_data.email
-                                                    }"
+                              href="mailto:${customer_data.email}"
                               class="contact-button"
                               >Get in Touch</a
                             >
@@ -593,11 +599,9 @@
                     <td class="footer-cell">
                       <div style="margin-bottom: 10px">
                         <a
-                          href="${
-                                              customer_data.company_website
-                                            }"
+                          href="${customer_data.company_website}"
                           class="footer-link"
-                          >${ customer_data.company_website }</a
+                          >${customer_data.company_website}</a
                         >
                       </div>
                       <div>© 2025 Atlas Realty Leads. All rights reserved.</div>
@@ -612,4 +616,5 @@
     </table>
   </body>
 </html>
-`; }
+`;
+}

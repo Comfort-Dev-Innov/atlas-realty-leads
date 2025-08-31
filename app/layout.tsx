@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/ui/base/Header';
+import { ReCaptchaProvider } from '@/components/providers/RecaptchaProvider';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -39,9 +40,12 @@ export default function RootLayout({
         <meta property="og:locale" content="en_US" />
         <meta property="og:site_name" content="Atlas Realty Leads" />
       </head>
+
       <body className={`${inter.variable} antialiased`}>
-        <Header />
-        {children}
+        <ReCaptchaProvider>
+          <Header />
+          {children}
+        </ReCaptchaProvider>
       </body>
     </html>
   );
