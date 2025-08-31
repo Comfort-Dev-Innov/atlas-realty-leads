@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Thank You for Your Inquiry - Atlas Realty Leads</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      .email-container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+
+      .header {
+        background-color: #ffffff;
+        padding: 40px 20px 20px;
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .logo-container {
+        width: 200px;
+        height: auto;
+      }
+
+      .header img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .logo {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+      }
+
+      .content {
+        padding: 40px 30px;
+        text-align: center;
+      }
+
+      .greeting {
+        font-size: 18px;
+        color: #333333;
+        margin-bottom: 20px;
+      }
+
+      .customer-name {
+        color: #0066cc;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .main-message {
+        font-size: 16px;
+        color: #333333;
+        margin-bottom: 30px;
+        line-height: 1.6;
+      }
+
+      .company-name {
+        color: #0066cc;
+        font-weight: bold;
+      }
+
+      .info-section {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 25px 0;
+        text-align: left;
+      }
+
+      .info-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .info-item {
+        font-size: 14px;
+        color: #555555;
+        margin: 8px 0;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .info-label {
+        font-weight: bold;
+        min-width: 140px;
+      }
+
+      .info-value {
+        flex: 1;
+        text-align: right;
+      }
+
+      .next-steps-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0066cc;
+        margin: 30px 0 20px;
+      }
+
+      .steps {
+        text-align: left;
+        margin: 20px 0;
+      }
+
+      .step {
+        display: flex;
+        align-items: flex-start;
+        margin: 20px 0;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+      }
+
+      .step-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #0066cc;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
+      }
+
+      .step-content {
+        flex: 1;
+      }
+
+      .step-title {
+        font-weight: bold;
+        color: #333333;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .step-description {
+        color: #666666;
+        font-size: 14px;
+      }
+
+      .contact-button {
+        display: inline-block;
+        background-color: #0066cc;
+        color: white !important;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 20px 0;
+        transition: background-color 0.3s;
+      }
+
+      .contact-button:hover {
+        background-color: #0052a3;
+      }
+
+      .footer {
+        background-color: #f8f9fa;
+        padding: 30px 20px;
+        text-align: center;
+        font-size: 12px;
+        color: #666666;
+      }
+
+      .footer-link {
+        color: #0066cc;
+        text-decoration: none;
+      }
+
+      /* Mobile responsive */
+      @media only screen and (max-width: 600px) {
+        .email-container {
+          margin: 10px;
+          border-radius: 8px;
+        }
+
+        .content {
+          padding: 30px 20px;
+        }
+
+        .info-item {
+          flex-direction: column;
+        }
+
+        .info-value {
+          text-align: left;
+          margin-top: 2px;
+        }
+
+        .step {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .step-icon {
+          margin: 0 auto 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="email-container">
+      <!-- Header -->
+      <div class="header">
+        <div class="logo-container">
+          <img
+            src="https://i.ibb.co/sJF50wjK/Img.png"
+            alt="Data Genie Logo"
+            class="logo"
+          />
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="content">
+        <!-- Greeting -->
+        <div class="greeting">
+          Hi <span class="customer-name">{{customer_name}}</span>! 👋
+        </div>
+
+        <!-- Main Message -->
+        <div class="main-message">
+          Thank you for your interest in
+          <span class="company-name">Atlas Realty Leads</span>! <br /><br />
+          We're thrilled to have received your inquiry about our services! We look forward
+          to working with you and helping you achieve your goals. Our team will
+          review your submission and get back to you shortly with more information.
+        </div>
+
+        <!-- Customer Information Summary -->
+        <div class="info-section">
+          <div class="info-title">📋 Summary of Your Submission</div>
+          <div class="info-item">
+            <span class="info-label">First Name:</span>
+            <span class="info-value">{{first_name}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Middle Name:</span>
+            <span class="info-value">{{middle_name}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Last Name:</span>
+            <span class="info-value">{{last_name}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email Address:</span>
+            <span class="info-value">{{email}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Phone Number:</span>
+            <span class="info-value">{{phone_number}}</span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Target Zip Code:</span>
+            <span class="info-value">{{zip_code}}</span>
+          </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps-title">What Happens Next</div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-icon">1</div>
+            <div class="step-content">
+              <div class="step-title">We've received your inquiry</div>
+              <div class="step-description">
+                Your submission has been successfully processed and is now in
+                our system.
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-icon">2</div>
+            <div class="step-content">
+              <div class="step-title">
+                Our team will review your requirements
+              </div>
+              <div class="step-description">
+                We'll evaluate your target zip codes and specific needs to
+                prepare the best solution.
+              </div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-icon">3</div>
+            <div class="step-content">
+              <div class="step-title">We'll contact you within 24-48 hours</div>
+              <div class="step-description">
+                A dedicated representative will reach out to discuss next steps
+                and answer any questions.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Button -->
+        <a href="mailto:{{contact_email}}" class="contact-button"
+          >Get in Touch</a
+        >
+
+        <div style="margin-top: 30px; font-size: 14px; color: #666666">
+          Questions? Feel free to reach out to us anytime!
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div style="margin-bottom: 10px">
+          <a href="{{company_website}}" class="footer-link"
+            >{{company_website}}</a
+          >
+        </div>
+        <div>© 2025 Atlas Realty Leads. All rights reserved.</div>
+      </div>
+    </div>
+  </body>
+</html>
