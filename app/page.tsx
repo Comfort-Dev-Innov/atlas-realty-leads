@@ -4,16 +4,22 @@ import RealtorsSection from '@/components/sections/RealtorsSection';
 import SimplePricing from '@/components/sections/SimplePricing';
 import TimelineSection from '@/components/sections/TimelineSection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
+import ContactSection from '@/components/sections/ContactSection';
+import FinalCTASection from '@/components/sections/FinalCTASection';
+import { CustomerFormDialog } from '@/components/ui/forms/CustomFormDialog';
 
 export default function Home() {
   return (
     <div className="bg-[#fdfdfd] overflow-x-hidden flex flex-col items-center justify-center min-h-screen pt-8">
+      <CustomerFormDialog />
       <HeroSection />
       <RealtorsSection />
       <TimelineSection />
       <SimplePricing />
       <CustomerSection />
       <TestimonialsSection />
+      <ContactSection />
+      <FinalCTASection />
     </div>
   );
 }

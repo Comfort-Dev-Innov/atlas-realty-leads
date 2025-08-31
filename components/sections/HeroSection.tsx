@@ -3,7 +3,6 @@ import React from 'react';
 import { Button } from '../ui/base/Button';
 import { motion, MotionConfig } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { CustomerFormDialog } from '../ui/forms/CustomFormDialog';
 import { useFormDialogStore } from '@/stores/formDialogStore';
 import Image from 'next/image';
 
@@ -274,7 +273,6 @@ const HeroSection = () => {
           </motion.div>
         </div>
       </section>
-      <CustomerFormDialog />
     </MotionConfig>
   );
 };
