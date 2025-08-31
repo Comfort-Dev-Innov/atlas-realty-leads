@@ -92,7 +92,7 @@ const FinalCTASection = () => {
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
                     initial={{ x: '-400%' }}
-                    animate={isVisible(0) ? { x: '300%' } : { x: '-200%' }}
+                    animate={isVisible(0) ? { x: '400%' } : { x: '-400%' }}
                     transition={{
                       duration: 2,
                       delay: 3,
