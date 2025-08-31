@@ -15,6 +15,7 @@ export type CustomerDataType = {
   phone_number: string;
   selected_plan: string | null | undefined;
   demo_data?: DemoDataType;
+  submission_date: string;
 };
 
 interface FormDialogStore {
@@ -45,6 +46,7 @@ export const useFormDialogStore = create<FormDialogStore>((set) => ({
     email: '',
     phone_number: '',
     selected_plan: null,
+    submission_date: '',
   },
   setFormData: (data) => set({ data }),
   isLoading: false,
@@ -70,6 +72,7 @@ export const useFormDialogStore = create<FormDialogStore>((set) => ({
         email: '',
         phone_number: '',
         selected_plan: null,
+        submission_date: '',
       },
       isLoading: false,
       error: false,

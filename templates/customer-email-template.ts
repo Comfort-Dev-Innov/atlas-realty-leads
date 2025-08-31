@@ -1,13 +1,5 @@
-export default function CustomerEmailTemplate(
-  submission_date: string,
-  first_name: string,
-  middle_name: string,
-  last_name: string,
-  email: string,
-  phone_number: string,
-  zip_code: string,
-  company_website: string
-) {
+//eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function CustomerEmailTemplate(customer_data: any) {
   return `
    <!DOCTYPE html>
 <html lang="en">
@@ -239,15 +231,51 @@ export default function CustomerEmailTemplate(
 
         <!-- Timestamp -->
         <div class="timestamp">
-          New Customer Form Submission Received at ${{ submission_date }}
+          New Customer Form Submission Received at ${(() => {
+            try {
+              const date = customer_data.submission_date
+                ? new Date(customer_data.submission_date)
+                : new Date();
+              return isNaN(date.getTime())
+                ? new Date().toLocaleString('en-US', {
+                    timeZone: 'America/New_York',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                  })
+                : date.toLocaleString('en-US', {
+                    timeZone: 'America/New_York',
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                  });
+            } catch (error) {
+              console.error(error);
+              return new Date().toLocaleString('en-US', {
+                timeZone: 'America/New_York',
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+              });
+            }
+          })()}
         </div>
 
         <!-- Quick Summary -->
         <div style="font-size: 16px; color: #555; margin-bottom: 20px; line-height: 1.5;">
           A new customer inquiry has been submitted by 
-          <span class="customer-highlight">${{ first_name }} ${{
-    last_name,
-  }}</span>. 
+          <span class="customer-highlight">${customer_data.first_name} ${
+    customer_data.last_name
+  }</span>. 
           Please review the details below and follow up accordingly.
         </div>
 
@@ -259,27 +287,27 @@ export default function CustomerEmailTemplate(
           </div>
           <div class="info-item">
             <span class="info-label">First Name:</span>
-            <span class="info-value">${{ first_name }}</span>
+            <span class="info-value">${customer_data.first_name}</span>
           </div>
           <div class="info-item">
             <span class="info-label">Middle Name:</span>
-            <span class="info-value">${{ middle_name }}</span>
+            <span class="info-value">${customer_data.middle_name}</span>
           </div>
           <div class="info-item">
             <span class="info-label">Last Name:</span>
-            <span class="info-value">${{ last_name }}</span>
+            <span class="info-value">${customer_data.last_name}</span>
           </div>
           <div class="info-item">
             <span class="info-label">Email Address:</span>
-            <span class="info-value">${{ email }}</span>
+            <span class="info-value">${customer_data.email}</span>
           </div>
           <div class="info-item">
             <span class="info-label">Phone Number:</span>
-            <span class="info-value">${{ phone_number }}</span>
+            <span class="info-value">${customer_data.phone_number}</span>
           </div>
           <div class="info-item">
             <span class="info-label">Target Zip Code:</span>
-            <span class="info-value">${{ zip_code }}</span>
+            <span class="info-value">${customer_data.zip_code}</span>
           </div>
         </div>
 
@@ -299,8 +327,8 @@ export default function CustomerEmailTemplate(
       <!-- Footer -->
       <div class="footer">
         <div style="margin-bottom: 10px">
-          <a href="${{ company_website }}" class="footer-link"
-            >${{ company_website }}</a
+              <a href="${customer_data.company_website}" class="footer-link"
+            >${customer_data.company_website}</a
           >
         </div>
         <div>© 2025 Atlas Realty Leads. All rights reserved.</div>

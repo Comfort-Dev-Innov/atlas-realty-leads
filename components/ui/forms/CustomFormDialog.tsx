@@ -36,6 +36,7 @@ export function CustomerFormDialog() {
     setError(false);
     setSuccess(false);
     setErrorMessage('');
+    setFormData({ ...data, submission_date: new Date().toISOString() });
 
     if (
       !data.first_name ||
@@ -67,7 +68,9 @@ export function CustomerFormDialog() {
         const email_response = await fetch('/api/email/customer', {
           method: 'POST',
           body: JSON.stringify({
-            customer_name: `${data.first_name} ${data.middle_name} ${data.last_name}`,
+            customer_name: `${data.first_name} ${data.middle_name || ''} ${
+              data.last_name
+            }`,
             contact_email: data.email,
             customer_data: JSON.stringify(data),
           }),

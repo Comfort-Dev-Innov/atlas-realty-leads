@@ -5,30 +5,19 @@ import { NextRequest } from 'next/server';
 
 export async function POST(request: NextRequest) {
   const { customer_name, contact_email, customer_data } = await request.json();
+  const customer_data_json = JSON.parse(customer_data);
 
-  const emailTemplate = CustomerEmailTemplate(
-    customer_data.submission_date,
-    customer_data.first_name,
-    customer_data.middle_name,
-    customer_data.last_name,
-    customer_data.email,
-    customer_data.phone_number,
-    customer_data.zip_code,
-    customer_data.company_website
-  );
+  const emailTemplate = CustomerEmailTemplate({
+    ...customer_data_json,
+    company_website: process.env.COMPANY_WEBSITE || '',
+  });
 
-  const adminEmailTemplate = AdminEmailTemplate(
-    customer_data.submission_date,
-    customer_data.first_name,
-    customer_data.middle_name,
-    customer_data.last_name,
-    customer_data.email,
-    customer_data.phone_number,
-    customer_data.zip_code,
-    customer_data.company_website
-  );
+  const adminEmailTemplate = AdminEmailTemplate({
+    ...customer_data_json,
+    company_website: process.env.COMPANY_WEBSITE || '',
+  });
 
-  if (!customer_name || !contact_email || !customer_data) {
+  if (!customer_name || !contact_email || !customer_data_json) {
     return new Response(
       JSON.stringify({
         message: 'You have not filled out the form correctly',
@@ -38,31 +27,38 @@ export async function POST(request: NextRequest) {
     );
   }
 
+  console.log('customer data', customer_data_json);
+
   try {
     const email = await sendEmail(
-      emailTemplate,
+      contact_email,
       'Thank you for inquiring about our services',
-      contact_email
+      '',
+      emailTemplate
     );
 
     const adminEmail = await sendEmail(
-      adminEmailTemplate,
+      process.env.ADMIN_EMAIL || '',
       'New Customer Form Submission Received',
-      process.env.ADMIN_EMAIL || 'noreply.datagenie@gmail.com'
+      '',
+      adminEmailTemplate
     );
 
-    if (adminEmail.success) {
+    console.log('Admin email result', adminEmail);
+    if (adminEmail.accepted.length > 0) {
       console.log('Notified Admin of new customer form submission');
     } else {
       console.error(
         'Failed to notify Admin of new customer form submission',
         customer_name,
         contact_email,
-        customer_data
+        customer_data_json
       );
     }
 
-    if (email.success) {
+    console.log('Customer email result', email);
+
+    if (email.accepted.length > 0) {
       return new Response(
         JSON.stringify({
           message: 'Email sent',
