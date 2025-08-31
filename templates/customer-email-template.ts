@@ -1,172 +1,254 @@
 //eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function CustomerEmailTemplate(customer_data: any) {
   return `
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>New Customer Form Submission - Atlas Realty Leads</title>
+    <title>Thank You for Your Inquiry - Atlas Realty Leads</title>
+    <!--[if mso]>
+      <noscript>
+        <xml>
+          <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+          </o:OfficeDocumentSettings>
+        </xml>
+      </noscript>
+    <![endif]-->
     <style>
+      /* Reset styles */
+      body,
+      table,
+      td,
+      p,
+      a,
+      li,
+      blockquote {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+      }
+      table,
+      td {
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+      img {
+        -ms-interpolation-mode: bicubic;
+        border: 0;
+        outline: none;
+        text-decoration: none;
+      }
+
+      /* Base styles */
       body {
-        margin: 0;
-        padding: 0;
+        margin: 0 !important;
+        padding: 0 !important;
         background-color: #f5f5f5;
-        font-family: Arial, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 16px;
         line-height: 1.6;
+        color: #333333;
+      }
+
+      table {
+        border-collapse: collapse;
+        mso-table-lspace: 0pt;
+        mso-table-rspace: 0pt;
+      }
+
+      .email-wrapper {
+        width: 100%;
+        background-color: #f5f5f5;
+        padding: 20px 0;
       }
 
       .email-container {
         max-width: 600px;
-        margin: 20px auto;
+        margin: 0 auto;
         background-color: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
 
-      .header {
-        background: linear-gradient(135deg, #8cabff 0%, #092987 100%);
-        padding: 30px 20px;
+      .header-table {
+        width: 100%;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e0e0e0;
+      }
+
+      .header-cell {
+        padding: 40px 20px 20px;
         text-align: center;
-        color: white;
       }
 
-      .logo-container {
-        margin-bottom: 15px;
+      .logo {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
       }
 
-      .header img {
-        width: 60px;
-        height: 60px;
-        border-radius: 12px;
-        background: white;
-        padding: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      .content-table {
+        width: 100%;
+        background-color: #ffffff;
       }
 
-      .header-title {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 15px 0 5px;
-        color: white;
-      }
-
-      .header-subtitle {
-        font-size: 14px;
-        opacity: 0.9;
-        color: white;
-      }
-
-      .content {
+      .content-cell {
         padding: 40px 30px;
         text-align: center;
       }
 
-      .notification-badge {
-        display: inline-block;
-        background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-        color: white;
-        padding: 8px 16px;
-        border-radius: 20px;
-        font-size: 12px;
-        font-weight: bold;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(238, 90, 36, 0.3);
-      }
-
-      .timestamp {
+      .greeting {
         font-size: 18px;
         color: #333333;
-        margin-bottom: 30px;
-        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
       }
 
-      .customer-highlight {
-        color: #667eea;
+      .customer-name {
+        color: #0066cc;
+        font-weight: bold;
+        font-style: italic;
+      }
+
+      .main-message {
+        font-size: 16px;
+        color: #333333;
+        margin-bottom: 30px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .company-name {
+        color: #0066cc;
         font-weight: bold;
       }
 
       .info-section {
-        background: linear-gradient(135deg, #f8f9ff 0%, #f0f4f8 100%);
-        border: 2px solid #e1e8ed;
-        border-radius: 12px;
-        padding: 30px;
-        margin: 30px 0;
-        text-align: left;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 25px 0;
       }
 
       .info-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #333333;
-        margin-bottom: 20px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .info-icon {
-        font-size: 20px;
-      }
-
-      .info-item {
-        font-size: 15px;
-        color: #444444;
-        margin: 12px 0;
-        display: flex;
-        justify-content: space-between;
-        padding: 8px 0;
-        border-bottom: 1px solid #e8eef3;
-      }
-
-      .info-item:last-child {
-        border-bottom: none;
-      }
-
-      .info-label {
-        font-weight: 600;
-        min-width: 150px;
-        color: #2c3e50;
-      }
-
-      .info-value {
-        flex: 1;
-        text-align: right;
-        color: #34495e;
-        font-weight: 500;
-      }
-
-      .action-required {
-        background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-        border-radius: 12px;
-        padding: 20px;
-        margin: 25px 0;
-        text-align: center;
-        border: 2px solid #ff6b9d;
-      }
-
-      .action-title {
         font-size: 16px;
         font-weight: bold;
-        color: #c44569;
+        color: #333333;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .info-table {
+        width: 100%;
+        margin-top: 15px;
+      }
+
+      .info-row {
         margin-bottom: 8px;
       }
 
-      .action-description {
+      .info-label {
+        font-weight: bold;
         font-size: 14px;
-        color: #000000;
-        font-style: italic;
+        color: #555555;
+        width: 40%;
+        padding: 4px 0;
+        vertical-align: top;
       }
 
-      .footer {
+      .info-value {
+        font-size: 14px;
+        color: #555555;
+        padding: 4px 0;
+        text-align: right;
+        vertical-align: top;
+      }
+
+      .next-steps-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0066cc;
+        margin: 30px 0 20px;
+        text-align: center;
+      }
+
+      .steps-table {
+        width: 100%;
+        margin: 20px 0;
+      }
+
+      .step-row {
         background-color: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .step-cell {
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+      }
+
+      .step-icon-cell {
+        width: 60px;
+        text-align: center;
+        vertical-align: top;
+        padding-right: 15px;
+      }
+
+      .step-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #0066cc;
+        border-radius: 50%;
+        color: white;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 40px;
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .step-content-cell {
+        vertical-align: top;
+      }
+
+      .step-title {
+        font-weight: bold;
+        color: #333333;
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+
+      .step-description {
+        color: #666666;
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .contact-button {
+        display: inline-block;
+        background-color: #0066cc;
+        color: #ffffff !important;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .footer-table {
+        width: 100%;
+        background-color: #f8f9fa;
+      }
+
+      .footer-cell {
         padding: 30px 20px;
         text-align: center;
         font-size: 12px;
@@ -178,164 +260,361 @@ export default function CustomerEmailTemplate(customer_data: any) {
         text-decoration: none;
       }
 
-      /* Mobile responsive */
+      /* Mobile styles */
       @media only screen and (max-width: 600px) {
+        .email-wrapper {
+          padding: 10px !important;
+        }
+
         .email-container {
-          margin: 10px;
-          border-radius: 8px;
+          border-radius: 8px !important;
+          margin: 0 !important;
         }
 
-        .content {
-          padding: 30px 20px;
+        .content-cell {
+          padding: 30px 20px !important;
         }
 
-        .info-item {
-          flex-direction: column;
+        .header-cell {
+          padding: 30px 15px 15px !important;
+        }
+
+        .info-section {
+          padding: 20px !important;
+          margin: 20px 0 !important;
+        }
+
+        .info-label {
+          width: 100% !important;
+          display: block !important;
+          margin-bottom: 2px !important;
+          text-align: left;
         }
 
         .info-value {
-          text-align: left;
-          margin-top: 2px;
+          width: 100% !important;
+          display: block !important;
+          text-align: left !important;
+          padding-left: 0 !important;
         }
 
-        .step {
-          flex-direction: column;
-          text-align: center;
+        .step-icon-cell {
+          width: 48px !important;
+          text-align: center !important;
+          padding-bottom: 10px !important;
+          padding-right: 10px !important;
         }
 
-        .step-icon {
-          margin: 0 auto 10px;
+        .step-content-cell {
+          text-align: start !important;
+        }
+
+        .greeting {
+          font-size: 16px !important;
+        }
+
+        .main-message {
+          font-size: 15px !important;
+        }
+
+        .next-steps-title {
+          font-size: 20px !important;
+        }
+      }
+
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .email-container {
+          background-color: #ffffff !important;
+        }
+        .content-table,
+        .header-table,
+        .footer-table {
+          background-color: #ffffff !important;
         }
       }
     </style>
   </head>
   <body>
-    <div class="email-container">
-      <!-- Header -->
-      <div class="header">
-        <div class="logo-container">
-          <img
-            src="https://i.ibb.co/sJF50wjK/Img.png"
-            alt="Data Genie Logo"
-            class="logo"
-          />
-        </div>
-        <div class="header-title">Atlas Realty Leads</div>
-        <div class="header-subtitle">Admin Notification System</div>
-      </div>
-
-      <!-- Main Content -->
-      <div class="content">
-        <!-- Notification Badge -->
-        <div class="notification-badge">🔔 New Submission Alert</div>
-
-        <!-- Timestamp -->
-        <div class="timestamp">
-          New Customer Form Submission Received at ${(() => {
-            try {
-              const date = customer_data.submission_date
-                ? new Date(customer_data.submission_date)
-                : new Date();
-              return isNaN(date.getTime())
-                ? new Date().toLocaleString('en-US', {
-                    timeZone: 'America/New_York',
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric',
-                  })
-                : date.toLocaleString('en-US', {
-                    timeZone: 'America/New_York',
-                    month: 'long',
-                    day: 'numeric',
-                    year: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    second: 'numeric',
-                  });
-            } catch (error) {
-              console.error(error);
-              return new Date().toLocaleString('en-US', {
-                timeZone: 'America/New_York',
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-              });
-            }
-          })()}
-        </div>
-
-        <!-- Quick Summary -->
-        <div style="font-size: 16px; color: #555; margin-bottom: 20px; line-height: 1.5;">
-          A new customer inquiry has been submitted by 
-          <span class="customer-highlight">${customer_data.first_name} ${
-    customer_data.last_name
-  }</span>. 
-          Please review the details below and follow up accordingly.
-        </div>
-
-        <!-- Customer Information Summary -->
-        <div class="info-section">
-          <div class="info-title">
-            <span class="info-icon">📋</span>
-            Customer Submission Details
-          </div>
-          <div class="info-item">
-            <span class="info-label">First Name:</span>
-            <span class="info-value">${customer_data.first_name}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Middle Name:</span>
-            <span class="info-value">${customer_data.middle_name}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Last Name:</span>
-            <span class="info-value">${customer_data.last_name}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Email Address:</span>
-            <span class="info-value">${customer_data.email}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Phone Number:</span>
-            <span class="info-value">${customer_data.phone_number}</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Target Zip Code:</span>
-            <span class="info-value">${customer_data.zip_code}</span>
-          </div>
-        </div>
-
-        <!-- Action Required -->
-        <div class="action-required">
-          <div class="action-title">⚡ Action Required</div>
-          <div class="action-description">
-            Please review this submission and follow up with the customer within 24-48 hours.
-          </div>
-        </div>
-
-        <div style="margin-top: 20px; font-size: 14px; color: #666666; font-style: italic;">
-          This is an automated notification from your Atlas Realty Leads system.
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="footer">
-        <div style="margin-bottom: 10px">
-              <a href="${customer_data.company_website}" class="footer-link"
-            >${customer_data.company_website}</a
+    <table
+      role="presentation"
+      class="email-wrapper"
+      cellpadding="0"
+      cellspacing="0"
+    >
+      <tr>
+        <td>
+          <table
+            role="presentation"
+            class="email-container"
+            cellpadding="0"
+            cellspacing="0"
           >
-        </div>
-        <div>© 2025 Atlas Realty Leads. All rights reserved.</div>
-      </div>
-    </div>
+            <!-- Header -->
+            <tr>
+              <td>
+                <table
+                  role="presentation"
+                  class="header-table"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td class="header-cell">
+                      <img
+                        src="https://i.ibb.co/sJF50wjK/Img.png"
+                        alt="Atlas Realty Leads Logo"
+                        class="logo"
+                      />
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Main Content -->
+            <tr>
+              <td>
+                <table
+                  role="presentation"
+                  class="content-table"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td class="content-cell">
+                      <!-- Greeting -->
+                      <div class="greeting">
+                        Hi
+                        <span class="customer-name"
+                          >${customer_data.first_name} ${
+    customer_data.middle_name || ''
+  }
+                          ${customer_data.last_name}</span
+                        >! 👋
+                      </div>
+
+                      <!-- Main Message -->
+                      <div class="main-message">
+                        Thank you for your interest in
+                        <span class="company-name">Atlas Realty Leads</span
+                        >!<br /><br />
+                        We're thrilled to have received your inquiry about our
+                        services! We look forward to working with you and
+                        helping you achieve your goals. Our team will review
+                        your submission and get back to you shortly with more
+                        information.
+                      </div>
+
+                      <!-- Customer Information Summary -->
+                      <div class="info-section">
+                        <div class="info-title">
+                          📋 Summary of Your Submission
+                        </div>
+                        <table
+                          role="presentation"
+                          class="info-table"
+                          cellpadding="0"
+                          cellspacing="0"
+                        >
+                          <tr>
+                            <td class="info-label">First Name:</td>
+                            <td class="info-value">
+                              ${customer_data.first_name}
+                            </td>
+                          </tr>
+                          ${
+                            customer_data.middle_name
+                              ? `
+                          <tr>
+                            <td class="info-label">Middle Name:</td>
+                            <td class="info-value">
+                              ${customer_data.middle_name}
+                            </td>
+                          </tr>
+                          `
+                              : ''
+                          }
+                          <tr>
+                            <td class="info-label">Last Name:</td>
+                            <td class="info-value">
+                              ${customer_data.last_name}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="info-label">Email Address:</td>
+                            <td class="info-value">${customer_data.email}</td>
+                          </tr>
+                          <tr>
+                            <td class="info-label">Phone Number:</td>
+                            <td class="info-value">
+                              ${customer_data.phone_number}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="info-label">Target Zip Code:</td>
+                            <td class="info-value">
+                              ${customer_data.zip_code}
+                            </td>
+                          </tr>
+                        </table>
+                      </div>
+
+                      <!-- Next Steps -->
+                      <div class="next-steps-title">What Happens Next</div>
+
+                      <table
+                        role="presentation"
+                        class="steps-table"
+                        cellpadding="0"
+                        cellspacing="0"
+                      >
+                        <tr>
+                          <td class="step-cell">
+                            <table
+                              role="presentation"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="width: 100%"
+                            >
+                              <tr>
+                                <td class="step-icon-cell">
+                                  <div class="step-icon">1</div>
+                                </td>
+                                <td class="step-content-cell">
+                                  <div class="step-title">
+                                    We've received your inquiry
+                                  </div>
+                                  <div class="step-description">
+                                    Your submission has been successfully
+                                    processed and is now in our system.
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="height: 20px"></td>
+                        </tr>
+                        <tr>
+                          <td class="step-cell">
+                            <table
+                              role="presentation"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="width: 100%"
+                            >
+                              <tr>
+                                <td class="step-icon-cell">
+                                  <div class="step-icon">2</div>
+                                </td>
+                                <td class="step-content-cell">
+                                  <div class="step-title">
+                                    Our team will review your requirements
+                                  </div>
+                                  <div class="step-description">
+                                    We'll evaluate your target zip codes and
+                                    specific needs to prepare the best solution.
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="height: 20px"></td>
+                        </tr>
+                        <tr>
+                          <td class="step-cell">
+                            <table
+                              role="presentation"
+                              cellpadding="0"
+                              cellspacing="0"
+                              style="width: 100%"
+                            >
+                              <tr>
+                                <td class="step-icon-cell">
+                                  <div class="step-icon">3</div>
+                                </td>
+                                <td class="step-content-cell">
+                                  <div class="step-title">
+                                    We'll contact you within 24-48 hours
+                                  </div>
+                                  <div class="step-description">
+                                    A dedicated representative will reach out to
+                                    discuss next steps and answer any questions.
+                                  </div>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Contact Button -->
+                      <table
+                        role="presentation"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="margin: 20px auto"
+                      >
+                        <tr>
+                          <td style="text-align: center">
+                            <a
+                              href="mailto:${customer_data.email}"
+                              class="contact-button"
+                              >Get in Touch</a
+                            >
+                          </td>
+                        </tr>
+                      </table>
+
+                      <div
+                        style="
+                          margin-top: 30px;
+                          font-size: 14px;
+                          color: #666666;
+                          text-align: center;
+                        "
+                      >
+                        Questions? Feel free to reach out to us anytime!
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td>
+                <table
+                  role="presentation"
+                  class="footer-table"
+                  cellpadding="0"
+                  cellspacing="0"
+                >
+                  <tr>
+                    <td class="footer-cell">
+                      <div style="margin-bottom: 10px">
+                        <a
+                          href="${customer_data.company_website}"
+                          class="footer-link"
+                          >${customer_data.company_website}</a
+                        >
+                      </div>
+                      <div>© 2025 Atlas Realty Leads. All rights reserved.</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
-
-  `;
+`;
 }

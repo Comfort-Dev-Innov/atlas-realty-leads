@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const email = await sendEmail(
-      contact_email,
+      customer_data_json.email,
       'Thank you for inquiring about our services',
       '',
       emailTemplate
