@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/base/Dialog';
 import { Button } from '@/components/ui/base/Button';
 import { useFormDialogStore } from '@/stores/formDialogStore';
+import { useTermsDialogStore } from '@/stores/termsDialogStore';
 import { ChevronLeft, CheckCircle } from 'lucide-react';
 import { Input } from '@/components/ui/base/Input';
 import { Spinner } from '@/components/ui/base/Spinner';
@@ -30,6 +31,7 @@ export function CustomerFormDialog() {
     setErrorMessage,
     reset,
   } = useFormDialogStore();
+  const { setOpen: setTermsOpen } = useTermsDialogStore();
 
   const onConfirm = async () => {
     setIsLoading(true);
@@ -198,11 +200,13 @@ export function CustomerFormDialog() {
 
             <p className="text-xs text-text-secondary text-center mt-8">
               By submitting you agree to the{' '}
-              <a href={process.env.NEXT_PUBLIC_TERMS_AND_CONDITIONS_URL}>
-                <span className="text-primary hover:text-primary-2">
-                  Terms and Conditions of Atlas Realty Leads.
-                </span>
-              </a>
+              <button
+                type="button"
+                onClick={() => setTermsOpen(true)}
+                className="text-primary hover:text-primary-2 underline underline-offset-2 transition-colors"
+              >
+                Terms and Conditions of Atlas Realty Leads.
+              </button>
             </p>
             <Button
               className="mt-8 w-1/4 p-5 justify-self-center"
