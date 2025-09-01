@@ -562,7 +562,7 @@ export default function CustomerEmailTemplate(customer_data: any) {
                         <tr>
                           <td style="text-align: center">
                             <a
-                              href="mailto:${customer_data.email}"
+                              href="mailto:support@atlasrealtyleads.com"
                               class="contact-button"
                               >Get in Touch</a
                             >
