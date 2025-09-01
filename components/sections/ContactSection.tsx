@@ -42,7 +42,7 @@ const ContactSection = () => {
   return (
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
       <section
-        id="contact"
+        id="contact-us"
         className="w-full flex flex-col items-center justify-center px-8 sm:px-20 xl:px-40 py-20 bg-gray-50"
       >
         <div className="max-w-4xl mx-auto text-center">
