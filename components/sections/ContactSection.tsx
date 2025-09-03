@@ -34,8 +34,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '1 (786) 947-5007',
-      href: 'tel:+17869475007',
+      value: '+1 213-951-1256',
+      href: 'tel:+12139511256',
     },
     {
       icon: () => (
