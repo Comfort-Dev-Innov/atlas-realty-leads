@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, MotionConfig } from 'framer-motion';
 import {
   HandCoins,
@@ -17,6 +17,8 @@ import {
 
 const RealtorsSection = () => {
   const disableAnimations = false;
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
 
   const { targetRef: sectionRef, isIntersecting: isSectionVisible } =
     useIntersectionObserver({
@@ -104,6 +106,32 @@ const RealtorsSection = () => {
       transition: { duration: 0.6, ease: 'easeOut' },
     },
   };
+
+  // Set mounted state
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Handle video play/pause based on visibility
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !isMounted) return;
+
+    const playVideo = async () => {
+      if (isSectionVisible) {
+        try {
+          await video.play();
+        } catch (error) {
+          console.log('Video autoplay failed:', error);
+          // Video will still be available with manual controls
+        }
+      } else {
+        video.pause();
+      }
+    };
+
+    playVideo();
+  }, [isSectionVisible, isMounted]);
 
   return (
     <MotionConfig reducedMotion={disableAnimations ? 'always' : 'never'}>
@@ -246,6 +274,67 @@ const RealtorsSection = () => {
                     />
                   </motion.div>
                 ))}
+              </motion.div>
+
+              {/* Landing Video Section */}
+              <motion.div
+                className="w-full max-w-6xl mt-20"
+                initial="hidden"
+                animate={isSectionVisible ? 'visible' : 'hidden'}
+                variants={textVariants}
+                transition={{ delay: 0.8 }}
+              >
+                <motion.div
+                  className="text-center space-y-6 mb-12"
+                  variants={textVariants}
+                >
+                  <motion.h2
+                    className="text-[20px] min-[400px]:text-[28px] sm:text-[35px] md:text-[40px] font-bold text-white"
+                    variants={textVariants}
+                  >
+                    See How We Transform Your Lead Generation
+                  </motion.h2>
+                  <motion.p
+                    className="text-white/90 text-md sm:text-lg xl:text-xl max-w-3xl mx-auto"
+                    variants={textVariants}
+                    transition={{ delay: 0.2 }}
+                  >
+                    Watch how our proven system delivers qualified seller leads
+                    directly to you.
+                  </motion.p>
+                </motion.div>
+
+                <motion.div
+                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20"
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 300 },
+                  }}
+                  variants={cardVariants}
+                >
+                  <motion.div>
+                    <video
+                      ref={videoRef}
+                      className="w-full h-auto rounded-2xl"
+                      controls
+                      preload="auto"
+                      loop
+                      playsInline
+                      autoPlay
+                      muted
+                      id="landing-video"
+                    >
+                      <source
+                        src="/assets/landing-video.mp4"
+                        type="video/mp4"
+                      />
+                      Your browser does not support the video tag.
+                    </video>
+                  </motion.div>
+
+                  {/* Video overlay for enhanced styling */}
+                  <div className="absolute inset-0 rounded-2xl ring-1 ring-white/20 pointer-events-none"></div>
+                </motion.div>
               </motion.div>
             </div>
           </div>

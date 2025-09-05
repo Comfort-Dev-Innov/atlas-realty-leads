@@ -34,8 +34,8 @@ const ContactSection = () => {
     {
       icon: Phone,
       label: 'Phone',
-      value: '+1 213-951-1256',
-      href: 'tel:+12139511256',
+      value: '+213-951-1256',
+      href: 'tel:+2139511256',
     },
     {
       icon: () => (
