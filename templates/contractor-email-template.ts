@@ -485,28 +485,6 @@ export default function ContractorEmailTemplate(contractor_data: any) {
                               ${contractor_data.years_experience || 'N/A'}
                             </td>
                           </tr>
-                          <tr>
-                            <td class="info-label">Business Address:</td>
-                            <td class="info-value">
-                              ${contractor_data.business_address || 'N/A'}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="info-label">Website:</td>
-                            <td class="info-value">
-                              ${
-                                contractor_data.website
-                                  ? `<a href="${contractor_data.website}" style="color: #0066cc;">${contractor_data.website}</a>`
-                                  : 'N/A'
-                              }
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="info-label">Desired Leads:</td>
-                            <td class="info-value">
-                              ${contractor_data.desired_leads || 'N/A'}
-                            </td>
-                          </tr>
                         </table>
                       </div>
 

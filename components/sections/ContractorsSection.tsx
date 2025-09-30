@@ -13,7 +13,7 @@ const ContractorsSection = () => {
     {
       icon: '🔧',
       title: 'Repairs & Maintenance',
-      description: 'Plumbing, electrical, HVAC',
+      description: 'Pest Control, Plumbing, electrical, HVAC',
     },
     {
       icon: '🎨',
