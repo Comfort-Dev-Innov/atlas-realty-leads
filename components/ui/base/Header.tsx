@@ -1,30 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
-import { usePageTransition } from '@/hooks/usePageTransition';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentPath, setCurrentPath] = useState('');
-  const { navigateWithTransition } = usePageTransition();
 
   const navigationItems = [
-    { name: 'Why Choose Us', href: '#why-choose-us', type: 'scroll' },
-    { name: 'How it Works', href: '#how-it-works', type: 'scroll' },
-    { name: 'Pricing', href: '#pricing', type: 'scroll' },
-    { name: 'Who We Help', href: '#who-we-help', type: 'scroll' },
-    { name: 'Testimonials', href: '#testimonials', type: 'scroll' },
-    { name: 'Contact Us', href: '#contact-us', type: 'scroll' },
-    { name: 'Contractors', href: '/contractors', type: 'page' },
+    { name: 'Why Choose Us', href: '#why-choose-us' },
+    { name: 'How it Works', href: '#how-it-works' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'Who We Help', href: '#who-we-help' },
+    { name: 'Testimonials', href: '#testimonials' },
+    { name: 'Contact Us', href: '#contact-us' },
   ];
 
   useEffect(() => {
-    setCurrentPath(window.location.pathname);
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
@@ -37,16 +32,11 @@ const Header = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  const handleNavClick = (href: string, type: string) => {
+  const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
-
-    if (type === 'scroll') {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else if (type === 'page') {
-      navigateWithTransition(href);
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -66,41 +56,30 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.2 }}
         >
-          <button
-            onClick={() => navigateWithTransition('/')}
-            className="h-[60px]"
-          >
-            <Image
-              src="/assets/images/logo.png"
-              alt="Atlas Realty Leads"
-              width={100}
-              height={30}
-              className="w-full h-full object-contain"
-            />
-          </button>
+          <Link href="/" className="h-[60px]">
+            <Image src="/assets/images/logo.png" alt="Atlas Realty Leads" width={100} height={30} className="w-full h-full object-contain" />
+          </Link>
         </motion.div>
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex items-center space-x-6 xl:space-x-12">
-          {navigationItems.map((item, index) => {
-            return (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.href, item.type);
-                }}
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-              >
-                {item.name}
-              </motion.a>
-            );
-          })}
+          {navigationItems.map((item, index) => (
+            <motion.a
+              key={item.name}
+              href={item.href}
+              className="text-gray-700 hover:text-blue-600 font-medium transition-colors duration-200"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(item.href);
+              }}
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              {item.name}
+            </motion.a>
+          ))}
         </div>
 
         {/* Mobile Menu Button */}
@@ -130,24 +109,22 @@ const Header = () => {
             transition={{ duration: 0.3 }}
           >
             <div className="px-6 py-4 space-y-4">
-              {navigationItems.map((item, index) => {
-                return (
-                  <motion.a
-                    key={item.name}
-                    href={item.href}
-                    className="block text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors duration-200"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(item.href, item.type);
-                    }}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    {item.name}
-                  </motion.a>
-                );
-              })}
+              {navigationItems.map((item, index) => (
+                <motion.a
+                  key={item.name}
+                  href={item.href}
+                  className="block text-gray-700 hover:text-blue-600 font-medium py-2 transition-colors duration-200"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.href);
+                  }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                >
+                  {item.name}
+                </motion.a>
+              ))}
             </div>
           </motion.div>
         )}

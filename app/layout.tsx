@@ -3,8 +3,6 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/ui/base/Header';
 import { ReCaptchaProvider } from '@/components/providers/RecaptchaProvider';
-import { TransitionProvider } from '@/components/providers/TransitionProvider';
-import PageTransition from '@/components/ui/base/PageTransition';
 
 const inter = Inter({
   variable: '--font-inter',
@@ -45,10 +43,8 @@ export default function RootLayout({
 
       <body className={`${inter.variable} antialiased`}>
         <ReCaptchaProvider>
-          <TransitionProvider>
-            <Header />
-            <PageTransition>{children}</PageTransition>
-          </TransitionProvider>
+          <Header />
+          {children}
         </ReCaptchaProvider>
       </body>
     </html>
