@@ -57,6 +57,13 @@ export default function Contractors() {
             We don&apos;t just help realtors. We also connect contractors with
             motivated homeowners ready for home improvement projects.
           </p>
+
+          <button
+            onClick={() => setContractorFormOpen(true)}
+            className="cursor-pointer bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+          >
+            Become a Partner Contractor
+          </button>
         </div>
       </section>
 
