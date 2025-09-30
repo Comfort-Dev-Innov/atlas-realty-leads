@@ -12,7 +12,7 @@ const Header = () => {
   const [currentPath, setCurrentPath] = useState('');
   const { navigateWithTransition } = usePageTransition();
 
-  const navigationItems = [
+  const homeNavigationItems = [
     { name: 'Why Choose Us', href: '#why-choose-us', type: 'scroll' },
     { name: 'How it Works', href: '#how-it-works', type: 'scroll' },
     { name: 'Pricing', href: '#pricing', type: 'scroll' },
@@ -22,15 +22,54 @@ const Header = () => {
     { name: 'Contractors', href: '/contractors', type: 'page' },
   ];
 
+  const contractorNavigationItems = [
+    { name: "Back to Realtor's Home Page", href: '/', type: 'page' },
+  ];
+
+  // Filter navigation items based on current page
+  const navigationItems =
+    currentPath === '/contractors'
+      ? contractorNavigationItems
+      : homeNavigationItems;
+
   useEffect(() => {
+    // Set initial path
     setCurrentPath(window.location.pathname);
 
+    // Handle scroll
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
     };
 
+    // Handle path changes (for SPAs like Next.js)
+    const handlePathChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    // Listen for popstate (back/forward buttons)
+    window.addEventListener('popstate', handlePathChange);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Also listen for pushstate/replacestate changes
+    const originalPushState = history.pushState;
+    const originalReplaceState = history.replaceState;
+
+    history.pushState = function (...args) {
+      originalPushState.apply(history, args);
+      handlePathChange();
+    };
+
+    history.replaceState = function (...args) {
+      originalReplaceState.apply(history, args);
+      handlePathChange();
+    };
+
+    return () => {
+      window.removeEventListener('popstate', handlePathChange);
+      window.removeEventListener('scroll', handleScroll);
+      history.pushState = originalPushState;
+      history.replaceState = originalReplaceState;
+    };
   }, []);
 
   const toggleMobileMenu = () => {
