@@ -387,22 +387,6 @@ export default function ContractorAdminEmailTemplate(contractor_data: any) {
                               contractor_data.years_experience || 'Not provided'
                             }</td>
                           </tr>
-                          <tr class="info-row">
-                            <td class="info-label">Business Address:</td>
-                            <td class="info-value">${
-                              contractor_data.business_address || 'Not provided'
-                            }</td>
-                          </tr>
-                          <tr class="info-row">
-                            <td class="info-label">Website:</td>
-                            <td class="info-value">
-                              ${
-                                contractor_data.website
-                                  ? `<a href="${contractor_data.website}" style="color: #0066cc;">${contractor_data.website}</a>`
-                                  : 'Not provided'
-                              }
-                            </td>
-                          </tr>
                         </table>
                       </div>
 
@@ -430,20 +414,6 @@ export default function ContractorAdminEmailTemplate(contractor_data: any) {
                           </tr>
                         </table>
                       </div>
-
-                      <!-- Business Details -->
-                      <div class="info-section">
-                        <div class="info-title">🏢 Business Details</div>
-                        <table role="presentation" class="info-table" cellpadding="0" cellspacing="0">
-                          <tr class="info-row">
-                            <td class="info-label">Desired Leads:</td>
-                            <td class="info-value">${
-                              contractor_data.desired_leads || 'Not provided'
-                            }</td>
-                          </tr>
-                        </table>
-                      </div>
-
                       <!-- Additional Information -->
                       ${
                         contractor_data.additional_info

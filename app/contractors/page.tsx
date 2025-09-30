@@ -47,8 +47,7 @@ export default function Contractors() {
       <section className="w-full max-w-7xl mx-auto px-6 py-20">
         <div className="text-center">
           <h1 className="text-6xl font-bold text-gray-900 mb-6">
-            <span className="text-blue-600">Atlas Realty Leads</span> for
-            Contractors
+            <span className="text-blue-600">Atlas Leads</span> for Contractors
           </h1>
           <p className="font-bold text-2xl text-gray-600 my-2 max-w-3xl mx-auto">
             Exclusive Home Service Leads. Real Homeowners. Real Projects.
