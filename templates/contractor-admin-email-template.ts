@@ -414,8 +414,6 @@ export default function ContractorAdminEmailTemplate(contractor_data: any) {
                           </tr>
                         </table>
                       </div>
-
-
                       <!-- Additional Information -->
                       ${
                         contractor_data.additional_info
